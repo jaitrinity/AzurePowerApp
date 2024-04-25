@@ -1,0 +1,58 @@
+<div class="row mr-0">
+    <div class="col-md-12">
+        <label (click)="goToBack()">
+            <span class="fa fa-arrow-left" aria-hidden="true"></span> Back
+        </label>
+    </div>
+</div>
+<div class="row mr-0">
+    <div class="col-md-12 details-div">
+        <table class="table table-bordered table-striped my-table">
+            <tbody>
+                <tr>
+                    <th>IR Id</th>
+                    <td>{{irObj.irId}}</td>
+                </tr>
+                <tr>
+                    <th>Project</th>
+                    <td>{{irObj.projectName}}</td>
+                </tr>
+                <tr>
+                    <th>PO No</th>
+                    <td>{{irObj.poNo}}</td>
+                </tr>
+                <tr>
+                    <th>PO Date</th>
+                    <td>{{irObj.poDate}}</td>
+                </tr>
+                <tr>
+                    <th>Lot No</th>
+                    <td>{{irObj.lotNo}}</td>
+                </tr>
+                <tr>
+                    <th>Offer Item</th>
+                    <td>{{irObj.offerItem}}</td>
+                </tr>
+                <tr>
+                    <th>Offer Qty</th>
+                    <td>{{irObj.offerQty}}</td>
+                </tr>
+                <tr>
+                    <th>Readiness Report</th>
+                    <td>{{irObj.readinessReport}}</td>
+                </tr>
+                <tr>
+                    <th>Dimensional Report</th>
+                    <td>{{irObj.dimensionalReport}}</td>
+                </tr>
+                <tr>
+                    <th>Photograph</th>
+                    <td>
+                        {{irObj.photograph}} - {{irObj.photograph1}} - {{irObj.photograph2}} - 
+                        {{irObj.photograph3}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

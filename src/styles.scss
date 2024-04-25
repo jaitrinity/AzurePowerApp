@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #1547bd; 
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #1547bd; 
+}
+
+
+.mr-0{
+    margin: 0px !important;
+}
+
+.mobileShow {display: none;}
+.desktopShow {display: block;}
+
+@media only screen
+and (min-width : 0px)
+and (max-width : 600px){ 
+    .mobileShow {display: block;}
+    .desktopShow {display: none;}
+}
+
+.my-table{
+    font-size: 14px;
+}
+.my-table thead {
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0;
+    z-index: 10; 
+}
+
+.fa{
+    cursor: pointer;
+}

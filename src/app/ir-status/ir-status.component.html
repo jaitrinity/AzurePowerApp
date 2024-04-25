@@ -1,0 +1,183 @@
+<div class="desktopShow text-center text-danger">
+    <h1><i>! This is only mobile view sites.</i></h1>
+</div>
+<div class="mobileShow">
+    <div class="row mr-0" *ngIf="irList.length == 0;else allIr">
+        <div class="col-md-12">No Record found</div>
+    </div>
+    <ng-template #allIr>
+        <div class="row mr-0">
+            <div class="col-md-12">
+                <table class="table table-bordered table-striped my-table">
+                    <thead>
+                        <tr>
+                            <th>IR Id</th>
+                            <!-- <th>Project</th> -->
+                            <!-- <th>PO No</th> -->
+                            <!-- <th>Status</th> -->
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ir of irList">
+                            <td>{{ir.irId}}</td>
+                            <!-- <td>{{ir.projectName}}</td> -->
+                            <!-- <td>{{ir.poNo}}</td> -->
+                            <!-- <td>{{ir.statusTxt}}</td> -->
+                            <td>
+                                <span class="fa fa-eye" (click)="getIrDetails(ir)"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </ng-template>
+</div>
+
+<div id="irDetailsModal" class="modal fade" role="dialog" data-keyboard="false" data-bs-backdrop="static">
+	<div class="modal-dialog modal-md" >
+		<div class="modal-content">
+			<div class="modal-header" style="padding: 10px !important;">
+				<h5 class="modal-title">IR Id : {{viewIrObj.irId}}</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<!-- <button class="btn btn-sm btn-danger" (click)="closeAnyModal('irDetailsModal')">Close</button> -->
+			</div>
+			<div class="modal-body">
+                <div class="row mr-0">
+                    <div class="col-md-12 details-div">
+                        <table class="table table-bordered table-striped my-table">
+                            <tbody>
+                                <tr class="bg-colspan">
+                                    <th colspan="3" style="text-align: center;">IR Info</th>
+                                </tr>
+                                <tr>
+                                    <th>IR Id</th>
+                                    <td>{{viewIrObj.irId}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Project</th>
+                                    <td>{{viewIrObj.projectName}}</td>
+                                </tr>
+                                <tr>
+                                    <th>PO No</th>
+                                    <td>{{viewIrObj.poNo}}</td>
+                                </tr>
+                                <tr>
+                                    <th>PO Date</th>
+                                    <td>{{viewIrObj.poDate}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Lot No</th>
+                                    <td>{{viewIrObj.lotNo}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Offer Item</th>
+                                    <td>{{viewIrObj.offerItem}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Offer Qty</th>
+                                    <td>{{viewIrObj.offerQty}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Inspection Location</th>
+                                    <td>{{viewIrObj.itemForIns}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Inspection Date</th>
+                                    <td>{{viewIrObj.insDate}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Inspection Close Date</th>
+                                    <td>{{viewIrObj.insCloseDate}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Readiness Report</th>
+                                    <td>
+                                        <img src="assets/img/pdf-thumbnail.jpg" (click)="bigMedia(viewIrObj.readinessReport, 2)" class="img-thumbnail"/>
+                                        <!-- <img src="assets/img/pdf-thumbnail.jpg" (click)="downloadPdf(viewIrObj.readinessReport,'ReadinessReport')" class="img-thumbnail"/> -->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Dimensional Report</th>
+                                    <td>
+                                        <img src="assets/img/pdf-thumbnail.jpg" (click)="bigMedia(viewIrObj.dimensionalReport, 2)" class="img-thumbnail"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Photograph</th>
+                                    <td>
+                                        <div style="display: flex;">
+                                            <img [src]="viewIrObj.photograph" (click)="bigMedia(viewIrObj.photograph, 1)" *ngIf="viewIrObj.photograph != ''" class="img-thumbnail"/>
+                                            <img [src]="viewIrObj.photograph1" (click)="bigMedia(viewIrObj.photograph1, 1)" *ngIf="viewIrObj.photograph1 != ''" class="img-thumbnail"/>
+                                        </div>
+                                        <div style="display: flex;">
+                                            <img [src]="viewIrObj.photograph2" (click)="bigMedia(viewIrObj.photograph2, 1)" *ngIf="viewIrObj.photograph2 != ''" class="img-thumbnail"/>
+                                            <img [src]="viewIrObj.photograph3" (click)="bigMedia(viewIrObj.photograph3, 1)" *ngIf="viewIrObj.photograph3 != ''" class="img-thumbnail"/>
+                                        </div>
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>QAPnGTP</th>
+                                    <td>
+                                        <img src="assets/img/pdf-thumbnail.jpg" (click)="bigMedia(viewIrObj.qapGtp, 2)" class="img-thumbnail"/>
+                                    </td>
+                                </tr>
+                                <tr class="bg-colspan">
+                                    <th colspan="2">Employee Info</th>
+                                </tr>
+                                <tr>
+                                    <th>Vendor Name & Mobile</th>
+                                    <td>
+                                        {{viewIrObj.vendorName}} - 
+                                        <a href="tel:{{viewIrObj.vendorMobile}}">{{viewIrObj.vendorMobile}}</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>TPI Name & Mobile</th>
+                                    <td>
+                                        {{viewIrObj.tpi}} - 
+                                        <a href="tel:{{viewIrObj.tpiMobile}}">{{viewIrObj.tpiMobile}}</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>TPI Auditor & Mobile</th>
+                                    <td>
+                                        {{viewIrObj.tpiAuditor}} - 
+                                        <a href="tel:{{viewIrObj.tpiAuditorMobile}}">{{viewIrObj.tpiAuditorMobile}}</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>	
+	</div>
+</div>
+
+<div id="bigMediaModal" class="modal fade" role="dialog" data-keyboard="false" data-bs-backdrop="static">
+	<div class="modal-dialog modal-md" >
+		<div class="modal-content">
+			<div class="modal-header" style="padding: 10px !important;">
+				<h5 class="modal-title"></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body" style="height: 500px;">
+                <div class="row mr-0" style="height: 100%;">
+                    <div class="col-md-12">
+                        <img [src]="mediaUrl" *ngIf="mediaType == 1" />
+                        <iframe [src]="mediaUrl" *ngIf="mediaType == 2" style="width: 100%;height: 100%;border: none;"></iframe>
+                    </div>
+                </div>
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>	
+	</div>
+</div>
+
